@@ -16,7 +16,11 @@ The `super.prop` and `super[expr]` expressions are valid in any [method definiti
 ## Syntax
 
 ```js-nolint
-super([arguments]) // calls the parent constructor.
+super()
+super(arg1)
+super(arg1, arg2)
+super(arg1, arg2, /* …, */ argN)
+
 super.propertyOnParent
 super[expression]
 ```
@@ -171,7 +175,7 @@ obj2.method2(); // Logs "method 1"
 
 ### Methods that read super.prop do not behave differently when bound to other objects
 
-Accessing `super.x` behaves like `Reflect.get(Object.getPrototypeOf(objectLiteral), "x", this)`, which means the property is always seeked on the object literal/class declaration's prototype, and unbinding and re-binding a method won't change the reference of `super`.
+Accessing `super.x` behaves like `Reflect.get(Object.getPrototypeOf(objectLiteral), "x", this)`, which means the property is always sought on the object literal/class declaration's prototype, and unbinding and re-binding a method won't change the reference of `super`.
 
 ```js
 class Base {
@@ -271,7 +275,7 @@ class Extended extends Base {
 Extended.getName(); // Logs "Extended"
 ```
 
-This is especially important when interacting with [static private properties](/en-US/docs/Web/JavaScript/Reference/Classes/Private_class_fields#private_static_fields).
+This is especially important when interacting with [static private properties](/en-US/docs/Web/JavaScript/Reference/Classes/Private_properties#private_static_fields).
 
 ### Setting super.prop sets the property on this instead
 
